@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your todos</title>
+</head>
+<body>
+<form method="POST" >
+    {{form.hidden_tag()}}
+    {{form.title.label(class="wfw") }}
+    {{form.title}}
+<br>
+<br>
+
+    {{form.content.label}}
+    {{form.content}}
+<br>
+<br>
+
+
+
+    {{form.submit()}}
+
+</form>
+{% for todo in user_todos %}
+
+            <h1>EII {{ todo["title"] }}</h1>
+<a href={{url_for('full_todo_page',index=todo.title)}}>
+More
+</a>
+<form method="POST" action="{{url_for('delete_todo',id=todo.id)}}">
+{{del_form.hidden_tag()}}
+    {{del_form.submit()}}
+
+</form>
+
+    {% endfor %}
+
+</body>
+</html>
