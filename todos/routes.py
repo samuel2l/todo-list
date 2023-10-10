@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request
 from todos import app
 from todos.models import User, Todos
-from todos.forms import RegisterForm, LoginForm, NewTodoForm, DelForm
+from todos.forms import RegisterForm, LoginForm, NewTodoForm, DelForm, UpdateForm
 from todos import db
 from flask_login import login_user, logout_user, login_required, current_user
 @app.route("/")
@@ -89,6 +89,18 @@ def full_todo_page(index):
     return render_template("full_todo.html", title=title, content=content,created=created)
 
 
+@login_required
+@app.route("/todos/<int:id>/update", methods=["GET", "POST"])
+def update_todo(id):
+    todo_to_update = Todos.query.filter_by(id=id).first()
+    update_form = UpdateForm()
+    if update_form.validate_on_submit():
+        todo_to_update.title = update_form.title.data
+        todo_to_update.description = update_form.content.data
+        db.session.commit()
+        flash("Todo updated successfully.", "success")
+        return redirect(url_for('todos_page'))
+    return render_template('update.html', todo=todo_to_update, update_form=update_form)
 
 
 @app.route('/logout')

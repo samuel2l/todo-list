@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your todos</title>
+</head>
+<body>
+<form method="POST" >
+    {{update_form.hidden_tag()}}
+    {{update_form.title.label(class="wfw") }}
+    {{update_form.title}}
+<br>
+<br>
+    {{update_form.content.label}}
+    {{update_form.content}}
+<br>
+<br>
+    {{update_form.submit()}}
+</form>
+
+</body>
+</html>
