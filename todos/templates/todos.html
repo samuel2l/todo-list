@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Your todos</title>
+    <style>
+
+    </style>
 </head>
 <body>
+<div class="create-note">
 <form method="POST" >
     {{form.hidden_tag()}}
     {{form.title.label(class="wfw") }}
     {{form.title}}
-<br>
-<br>
 
-    {{form.content.label}}
+    {{form.content.label}}:
     {{form.content}}
-<br>
-<br>
-
 
 
     {{form.submit()}}
 
 </form>
+
+</div>
 {% for todo in user_todos %}
 
             <h1>EII {{ todo["title"] }}</h1>

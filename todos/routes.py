@@ -19,7 +19,7 @@ def register_page():
 
         login_user(create_user)
         flash("successful creation", category='success')
-        return redirect(url_for('home'))
+        return redirect(url_for('todos_page'))
 
     if form.errors != {}:
         for err in form.errors.values():
@@ -39,7 +39,7 @@ def login_page():
         ):
             login_user(attempted_user)
             flash("successful log in")
-            return redirect(url_for('home'))
+            return redirect(url_for('todos_page'))
 
         else:
             flash('Username and password do not match', category='danger')
@@ -101,7 +101,6 @@ def update_todo(id):
         flash("Todo updated successfully.", "success")
         return redirect(url_for('todos_page'))
     return render_template('update.html', todo=todo_to_update, update_form=update_form)
-
 
 @app.route('/logout')
 def logout_page():
