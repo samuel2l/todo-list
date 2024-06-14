@@ -4,28 +4,87 @@
     <meta charset="UTF-8">
     <title>Your todos</title>
     <style>
+/* Ensure basic styles are reset */
+body, html {
+    margin: 0;
+    padding: 5%;
+    font-family: Arial, sans-serif;
+        background-image: url('../login_bkg.jpg');
+      background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Style the form group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Style the form labels */
+.form-label {
+    font-size: 1.2em; /* Increase label font size */
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style the form controls (inputs, textareas, etc.) */
+.form-control {
+    width: 100%; /* Make input full width */
+    padding: 10px; /* Add padding */
+    font-size: 1.2em; /* Increase font size */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add rounded corners */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+/* Style the submit button */
+.btn {
+    padding: 10px 20px; /* Add padding */
+    font-size: 1.2em; /* Increase font size */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    margin-left:50%;
+    margin-right:50%;
+}
+
+/* Primary button specific styles */
+.btn-primary {
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* Text color */
+}
+
+/* Add hover effect for button */
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker primary color */
+}
+
+.note{
+
+}
 
     </style>
 </head>
 <body>
-<div class="create-note">
-<form method="POST" >
-    {{form.hidden_tag()}}
-    {{form.title.label(class="wfw") }}
-    {{form.title}}
+ <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.content.label(class="form-label") }}
+            {{ form.content(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
 
-    {{form.content.label}}:
-    {{form.content}}
-
-
-    {{form.submit()}}
-
-</form>
-
-</div>
 {% for todo in user_todos %}
-
-            <h1>EII {{ todo["title"] }}</h1>
+<div class="note">
+            <h1> {{ todo["title"] }}</h1>
 <a href={{url_for('full_todo_page',index=todo.title)}}>
 More
 </a>
@@ -34,6 +93,7 @@ More
     {{del_form.submit()}}
 
 </form>
+    </div>
 
 
     {% endfor %}

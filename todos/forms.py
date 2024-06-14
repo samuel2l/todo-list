@@ -25,8 +25,8 @@ class LoginForm(FlaskForm):
 
 
 class NewTodoForm(FlaskForm):
-    title = StringField(label='enter title', validators=[DataRequired()])
-    content = TextAreaField(label='enter content')
+    title = StringField(label='Title', validators=[DataRequired()])
+    content = TextAreaField(label='Content')
     submit = SubmitField(label="Add todo")
 
 
