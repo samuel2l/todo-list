@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'bk94334098284g6'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:22%40mypgadmin@localhost:5434/TodoApp'
+app.config['SECRET_KEY'] = '' #insert your app key here
+app.config['SQLALCHEMY_DATABASE_URI'] = ''#database URI goes here
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
